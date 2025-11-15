@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "commonjs",
-    "lib": ["ES2022"],
+    "lib": [
+      "ES2022"
+    ],
     "outDir": "./dist",
     "rootDir": "./",
     "strict": true,
@@ -25,5 +27,6 @@
     "**/*.spec.ts",
     "App.tsx",
     "index.ts"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

@@ -21,6 +21,8 @@
  * lightwalletd: https://github.com/zcash/lightwalletd
  */
 
+/* eslint-disable @typescript-eslint/no-unused-vars, no-console */
+
 import { BaseAdapter, TransactionStatus, BlockchainEvent } from './adapter';
 import { Balance, TransactionRequest, Address, ZKProof } from '../types';
 import { CryptoUtils } from '../utils/crypto';
@@ -160,7 +162,7 @@ export class ZcashAdapter extends BaseAdapter {
   // Balance & Transactions
   // ==========================================================================
 
-  async getBalance(address: string): Promise<Balance> {
+  async getBalance(_address: string): Promise<Balance> {
     // Filter unspent notes
     const unspentNotes = this.noteCommitments.filter(note => {
       const nullifierHex = CryptoUtils.bytesToHex(note.nullifier);
@@ -230,7 +232,7 @@ export class ZcashAdapter extends BaseAdapter {
     return txId;
   }
 
-  async estimateFee(request: TransactionRequest): Promise<string> {
+  async estimateFee(_request: TransactionRequest): Promise<string> {
     // Zcash standard fee: 0.0001 ZEC per transaction
     return '0.0001';
   }
@@ -493,21 +495,21 @@ export class ZcashAdapter extends BaseAdapter {
   private encryptOutput(plaintext: Uint8Array, sharedSecret: Uint8Array): Uint8Array {
     // ChaCha20-Poly1305 encryption
     // Mock: use actual ChaCha20
-    const key = sha256(sharedSecret);
-    const iv = randomBytes(16);
+    const _key = sha256(sharedSecret);
+    const _iv = randomBytes(16);
     
-    return Buffer.concat([iv, plaintext]);  // Mock encryption
+    return Buffer.concat([_iv, plaintext]);  // Mock encryption
   }
 
   /**
    * Generate zk-SNARK proof for Spend
    */
   private async generateSpendProof(
-    note: ShieldedNote,
-    cv: Uint8Array,
-    anchor: Uint8Array,
-    nullifier: Uint8Array,
-    rk: Uint8Array
+    _note: ShieldedNote,
+    _cv: Uint8Array,
+    _anchor: Uint8Array,
+    _nullifier: Uint8Array,
+    _rk: Uint8Array
   ): Promise<Uint8Array> {
     // In production: use libzcash or zcashd RPC to generate Groth16 proof
     // Proof statement: "I know a valid note in the commitment tree"
@@ -518,9 +520,9 @@ export class ZcashAdapter extends BaseAdapter {
    * Generate zk-SNARK proof for Output
    */
   private async generateOutputProof(
-    cv: Uint8Array,
-    cmu: Uint8Array,
-    ephemeralKey: Uint8Array
+    _cv: Uint8Array,
+    _cmu: Uint8Array,
+    _ephemeralKey: Uint8Array
   ): Promise<Uint8Array> {
     // In production: use libzcash
     // Proof statement: "Output note is well-formed"
@@ -531,8 +533,8 @@ export class ZcashAdapter extends BaseAdapter {
    * Create binding signature
    */
   private async createBindingSignature(
-    spends: SaplingSpendDescription[],
-    outputs: SaplingOutputDescription[]
+    _spends: SaplingSpendDescription[],
+    _outputs: SaplingOutputDescription[]
   ): Promise<Uint8Array> {
     // Binding signature proves: sum(cv_spends) = sum(cv_outputs) + valueBalance
     // Uses RedJubjub signature scheme

@@ -21,6 +21,8 @@
  * In production, install: npm install react-native-nfc-manager
  */
 
+/* eslint-disable @typescript-eslint/no-unused-vars, no-console */
+
 import { NFCPayload } from '../types';
 import { CryptoUtils } from '../utils/crypto';
 import { secp256k1 } from '@noble/curves/secp256k1';

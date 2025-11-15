@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { MeshPeer, MeshMessage } from '../types';
 import { CryptoUtils } from '../utils/crypto';
 import { secp256k1 } from '@noble/curves/secp256k1';

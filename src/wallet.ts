@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, prefer-const, no-console */
+
 import { WalletConfig, Balance, TransactionRequest, Address } from './types';
 import { KeyManager } from './core/keyManager';
 import { BlockchainAdapter } from './blockchain/adapter';

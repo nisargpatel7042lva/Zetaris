@@ -107,7 +107,9 @@ export class MeshcryptWallet {
     const nfcConfig: NFCConfig = {
       maxPayloadSize: 4096,
       timeoutMs: 5000,
-      requireBiometric: true
+      requireBiometric: true,
+      useSecureElement: true,
+      enableOfflineMode: false
     };
 
     this.nfcManager = new NFCTransactionManager(nfcConfig);

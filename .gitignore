@@ -39,3 +39,9 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Sensitive/private files
+prompt.txt
+
+# Test files (moved to tests/ directory)
+test_*.js

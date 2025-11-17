@@ -8,8 +8,8 @@ import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import EnhancedWalletScreen from '../screens/EnhancedWalletScreen';
-import SendScreen from '../screens/SendScreen';
-import ReceiveScreen from '../screens/ReceiveScreen';
+import RealSendScreen from '../screens/RealSendScreen';
+import RealReceiveScreen from '../screens/RealReceiveScreen';
 import SwapScreen from '../screens/SwapScreen';
 import WalletSetupScreen from '../screens/WalletSetupScreen';
 import CreateWalletScreen from '../screens/CreateWalletScreen';
@@ -70,8 +70,8 @@ export default function AppNavigator() {
       
       {/* Main Wallet Screens */}
       <Stack.Screen name="Wallet" component={EnhancedWalletScreen} />
-      <Stack.Screen name="Send" component={SendScreen} />
-      <Stack.Screen name="Receive" component={ReceiveScreen} />
+      <Stack.Screen name="Send" component={RealSendScreen} />
+      <Stack.Screen name="Receive" component={RealReceiveScreen} />
       <Stack.Screen name="Swap" component={SwapScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>

@@ -1,6 +1,4 @@
-/**
- * Test real ZK proof generation with compiled circuits
- */
+
 
 import zkProofService from '../src/privacy/zkProofService.js';
 

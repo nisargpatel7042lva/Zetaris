@@ -17,6 +17,8 @@ import VerifySeedPhraseScreen from '../screens/VerifySeedPhraseScreen';
 import ImportWalletScreen from '../screens/ImportWalletScreen';
 import ImportPrivateKeyScreen from '../screens/ImportPrivateKeyScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import { BridgeScreen } from '../screens/BridgeScreen';
+import { MeshNetworkScreen } from '../screens/MeshNetworkScreen';
 
 export type RootStackParamList = {
   WalletSetup: undefined;
@@ -28,6 +30,8 @@ export type RootStackParamList = {
   Send: undefined;
   Receive: undefined;
   Swap: undefined;
+  Bridge: undefined;
+  MeshNetwork: undefined;
   Settings: undefined;
 };
 
@@ -73,6 +77,8 @@ export default function AppNavigator() {
       <Stack.Screen name="Send" component={RealSendScreen} />
       <Stack.Screen name="Receive" component={RealReceiveScreen} />
       <Stack.Screen name="Swap" component={SwapScreen} />
+      <Stack.Screen name="Bridge" component={BridgeScreen} />
+      <Stack.Screen name="MeshNetwork" component={MeshNetworkScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );

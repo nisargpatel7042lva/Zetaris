@@ -1,6 +1,6 @@
 pragma circom 2.0.0;
 
-include "../node_modules/circomlib/circuits/pedersen.circom";
+include "../node_modules/circomlib/circuits/poseidon.circom";
 include "../node_modules/circomlib/circuits/comparators.circom";
 include "../node_modules/circomlib/circuits/bitify.circom";
 
@@ -10,7 +10,7 @@ include "../node_modules/circomlib/circuits/bitify.circom";
  * Proves that a transfer is valid without revealing amounts:
  * - Input amount equals output amount + fee
  * - All amounts are positive and within valid range
- * - Commitments are correctly formed
+ * - Commitments are correctly formed using Poseidon hash
  * 
  * Public inputs:
  * - inputCommitment: commitment to input amount
@@ -50,16 +50,16 @@ template ConfidentialTransfer(nBits) {
     balanceCheck <== inputAmount - outputAmount - fee;
     balanceCheck === 0;
     
-    // 3. Compute Pedersen commitments
-    component inputPedersen = Pedersen(nBits);
-    inputPedersen.in[0] <== inputAmount;
-    inputPedersen.in[1] <== inputBlinding;
-    inputCommitment <== inputPedersen.out[0];
+    // 3. Compute Poseidon commitments (hash of amount and blinding)
+    component inputPoseidon = Poseidon(2);
+    inputPoseidon.inputs[0] <== inputAmount;
+    inputPoseidon.inputs[1] <== inputBlinding;
+    inputCommitment <== inputPoseidon.out;
     
-    component outputPedersen = Pedersen(nBits);
-    outputPedersen.in[0] <== outputAmount;
-    outputPedersen.in[1] <== outputBlinding;
-    outputCommitment <== outputPedersen.out[0];
+    component outputPoseidon = Poseidon(2);
+    outputPoseidon.inputs[0] <== outputAmount;
+    outputPoseidon.inputs[1] <== outputBlinding;
+    outputCommitment <== outputPoseidon.out;
     
     // 4. Output validity signal
     isValid <== 1;

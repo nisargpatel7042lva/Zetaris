@@ -111,7 +111,7 @@ export class EthereumAdapter extends BaseAdapter {
   async getTokenBalance(address: string, tokenAddress: string): Promise<Balance> {
     const contract = new ethers.Contract(tokenAddress, ERC20_ABI, this.provider);
     
-    const [balance, decimals, symbol] = await this.executeRpc(() => Promise.all([uteRpc(() => Promise.all([
+    const [balance, decimals, symbol] = await this.executeRpc(() => Promise.all([
       contract.balanceOf(address),
       contract.decimals(),
       contract.symbol()

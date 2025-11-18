@@ -67,4 +67,4 @@ template PrivateSwap(nBits) {
     isValidSwap <== 1;
 }
 
-component main {public [rateA, rateB, commitmentA, commitmentB]} = PrivateSwap(64);
+component main {public [rateA, rateB]} = PrivateSwap(64);

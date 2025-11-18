@@ -1,0 +1,7 @@
+{
+  "inputAmount": "1000",
+  "outputAmount": "900",
+  "fee": "100",
+  "inputBlinding": "12345678901234567890",
+  "outputBlinding": "98765432109876543210"
+}

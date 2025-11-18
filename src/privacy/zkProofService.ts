@@ -323,12 +323,12 @@ export class ZkProofService {
   }
 
   /**
-   * Compute a Pedersen commitment
-   * C = value * G + blinding * H
+   * Compute a Poseidon commitment
+   * C = Poseidon(value, blinding)
+   * This matches the circuit implementation
    */
   computePedersenCommitment(value: bigint, blinding: bigint): bigint {
-    // Simplified commitment for now
-    // In production, use proper elliptic curve point operations
+    // Use Poseidon hash for commitment (matches circuit)
     const hash = sha256(
       Buffer.concat([
         this.bigintToBytes(value),

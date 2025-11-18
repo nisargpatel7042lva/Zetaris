@@ -41,4 +41,4 @@ template Nullifier() {
     isValid <== 1;
 }
 
-component main {public [nullifier]} = Nullifier();
+component main = Nullifier();

@@ -57,4 +57,4 @@ template RangeProof(nBits) {
     inRange <== checkMin * checkMax;
 }
 
-component main {public [min, max, commitment]} = RangeProof(64);
+component main {public [min, max]} = RangeProof(64);

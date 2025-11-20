@@ -101,12 +101,6 @@ export class BlockchainService {
       return this.getEmptyBalance('Polygon', 'MATIC', address);
     }
   }
-        balance: '0.000000',
-        balanceUSD: 0,
-        symbol: 'MATIC',
-      };
-    }
-  }
 
   /**
    * Fetch real balance for Solana address

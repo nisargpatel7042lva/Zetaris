@@ -358,28 +358,31 @@ export class RealBlockchainService {
         const block = await provider.getBlock(i, true);
         if (!block) continue;
         
-        for (const tx of block.transactions) {
-          if (typeof tx === 'string') continue;
-          
-          if (
-            tx.from.toLowerCase() === address.toLowerCase() ||
-            tx.to?.toLowerCase() === address.toLowerCase()
-          ) {
-            transactions.push({
-              hash: tx.hash,
-              from: tx.from,
-              to: tx.to || '',
-              value: ethers.formatEther(tx.value),
-              gas: tx.gasLimit.toString(),
-              gasPrice: tx.gasPrice?.toString() || '0',
-              nonce: tx.nonce,
-              blockNumber: block.number,
-              blockHash: block.hash,
-              timestamp: block.timestamp * 1000,
-              confirmations: currentBlock - block.number + 1,
-              status: 'confirmed',
-              explorerUrl: `${config.explorerUrl}/tx/${tx.hash}`,
-            });
+        for (const txHash of block.transactions) {
+          if (typeof txHash === 'string') {
+            const tx = await provider.getTransaction(txHash);
+            if (!tx) continue;
+            
+            if (
+              tx.from.toLowerCase() === address.toLowerCase() ||
+              tx.to?.toLowerCase() === address.toLowerCase()
+            ) {
+              transactions.push({
+                hash: tx.hash,
+                from: tx.from,
+                to: tx.to || '',
+                value: ethers.formatEther(tx.value),
+                gas: tx.gasLimit.toString(),
+                gasPrice: tx.gasPrice?.toString() || '0',
+                nonce: tx.nonce,
+                blockNumber: block.number,
+                blockHash: block.hash || undefined,
+                timestamp: block.timestamp * 1000,
+                confirmations: currentBlock - block.number + 1,
+                status: 'confirmed',
+                explorerUrl: `${config.explorerUrl}/tx/${tx.hash}`,
+              });
+            }
           }
         }
       }
